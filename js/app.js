@@ -43,16 +43,19 @@ const petHungriness = () => {
     const timer = setInterval(() => {
         if (gameover == true) {
             clearInterval(timer)
-            document.querySelector("form").style.opacity = 0
+            disableButtons()
         } else if (hungrinessCount >= 100) {
             console.log("game over")
             clearInterval(timer)
-            document.querySelector("form").style.opacity = 0
+            disableButtons()
         } else if (hungrinessCount >= 85) {
             document.getElementById("hungriness").style.color = "red"
             hungrinessCount ++
         } else if (hungrinessCount > 70) {
             document.getElementById("hungriness").style.color = "orange"
+            hungrinessCount ++
+        } else if (hungrinessCount > 50) {
+            document.getElementById("hungriness").style.color = "yellow"
             hungrinessCount ++
         } else {
             document.getElementById("hungriness").style.color = "white"
@@ -64,38 +67,56 @@ const petHungriness = () => {
 petHungriness()
 
 
+// // making 10s timer
+// let timeTen = 10
+// // parameter for the button to implement the timer
+// const tenSec = (theButton) => {
+//     const timer = setInterval(() => {
+//         if (timeTen > 0) {
+//             timeTen--
+//             document.querySelector(theButton).classList.add("disabled")
+//             document.querySelector(theButton).style.opacity = .4
+//             document.querySelector(theButton).innerText = timeTen
+//         } else {
+//             document.querySelector(theButton).classList.remove("disabled")
+//             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
+//             document.querySelector(theButton).style.opacity = 1
+//             timeTen = 10
+//             clearInterval(timer)
+//         }
+//     }, 800)
+// }
+
+
 // making 10s timer
-let theTime = 10
-const tenSec = (theButton) => {
+// parameter for the button to implement the timer, and the desired time duration
+const setTimer = (theButton, chooseTime) => {
+    let tempTime = chooseTime
     const timer = setInterval(() => {
-        if (theTime > 0) {
-            theTime--
-            document.querySelector(theButton).classList.add("disabled")
-            document.querySelector(theButton).style.opacity = .4
-            document.querySelector(theButton).innerText = theTime
+        document.querySelector(theButton).classList.add("disabled")
+        document.querySelector(theButton).style.opacity = .5
+        if (tempTime > 0) {
+            document.querySelector(theButton).innerText = tempTime
+            tempTime -= 1
         } else {
+            clearInterval(timer)
             document.querySelector(theButton).classList.remove("disabled")
             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
             document.querySelector(theButton).style.opacity = 1
-            theTime = 10
-            clearInterval(timer)
         }
-    }, 1000)
+    }, 800)
 }
-
-console.log(tenSec("#feed"))
-
-
-
 
 // feed button
 const feedPet = document.getElementById("feed").addEventListener("click", (event) => {
     event.preventDefault()
     //set timer for button cd
-    if (hungrinessCount < 50) {
+    if (hungrinessCount < 30) {
         hungrinessCount = 0
+        setTimer("#feed", 10)
     } else {
-        hungrinessCount-=50
+        hungrinessCount-=30
+        setTimer("#feed", 10)
     }
 })
 
@@ -108,6 +129,7 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         hungrinessCount = 0
         growthCount = 0
         gameover = true
+        disableButtons()
     } else if (hungrinessCount < 70 && growthCount >= 90) {
         console.log("Pet evolved")
         // switch to second set of pet
@@ -115,9 +137,11 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         // reset growth
         evolved += 1
         growthCount = 0
+        setTimer("#train", 15)
     } else if (hungrinessCount < 70) {
         hungrinessCount += 20
         growthCount += 50
+        setTimer("#train", 15)
     } else {
         console.log("You can not train your pet when its hungriness is above 70")
     }
@@ -125,3 +149,10 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
 })
 
 
+const disableButtons = () => {
+    document.querySelector("form").style.opacity = .1
+    document.querySelector("#feed").classList.add("disabled")
+    document.querySelector("#train").classList.add("disabled")
+    document.querySelector("#sleep").classList.add("disabled")
+    document.querySelector("#ff").classList.add("disabled")
+}
