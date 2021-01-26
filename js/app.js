@@ -27,19 +27,13 @@ let hungrinessCount = 0
 const hungriness = document.querySelector("#hungriness")
 hungriness.innerText = "Hungriness: " + hungrinessCount
 
+// set the variables' initial value
 let time = 0
 let evolved = 0
 let gameover = false
 let sleeping = false
-// const setTimer = () => {
-//     const timer = setInterval(() => {
-//       time++; 
-//       console.log(time)
-//     }, 1000)
-//   }
 
-//   setTimer()
-
+// set the hungriness timer so it increase over time, and change font when reaching different values
 const petHungriness = () => {
     const timer = setInterval(() => {
         if (sleeping == true) { 
@@ -54,14 +48,17 @@ const petHungriness = () => {
         } else if (hungrinessCount >= 85) {
             document.getElementById("hungriness").style.color = "red"
             hungrinessCount ++
-        } else if (hungrinessCount > 70) {
+        } else if (hungrinessCount >= 70) {
             document.getElementById("hungriness").style.color = "orange"
             hungrinessCount ++
-        } else if (hungrinessCount > 50) {
+        } else if (hungrinessCount >= 50) {
             document.getElementById("hungriness").style.color = "yellow"
             hungrinessCount ++
-        } else {
+        } else if (hungrinessCount >= 30) {
             document.getElementById("hungriness").style.color = "white"
+            hungrinessCount ++
+        } else {
+            document.getElementById("hungriness").style.color = "green"
             hungrinessCount ++
         }
         hungriness.innerText = "Hungriness: " + hungrinessCount
@@ -69,8 +66,8 @@ const petHungriness = () => {
 
 petHungriness()
 
-
-
+// setTimer takes two required and an optional parameters
+// theButton is for the button that it is using with, chooseTime for desired time duration, and sleepornot, type in "yes" for third parameter when using with sleep function
 const setTimer = (theButton, chooseTime, sleepornot) => {
     let tempTime = chooseTime
     const timer = setInterval(() => {
@@ -78,12 +75,16 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
         document.querySelector(theButton).style.opacity = .5
         if(sleepornot == "yes" && tempTime <= 0) {
             sleeping = false
+            // hide sleeping pet 
+            document.getElementById("theSleeping").style.opacity = 0
             resetButtons()
             clearInterval(timer)
             document.querySelector(theButton).classList.remove("disabled")
             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
             document.querySelector(theButton).style.opacity = 1
         } else if (sleepornot == "yes" && tempTime > 0) {
+            // switch to sleeping pet
+            document.getElementById("theSleeping").style.opacity = 1
             document.querySelector(theButton).innerText = tempTime
             tempTime -= 1
             disableButtons()
@@ -102,41 +103,23 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
 }
 
 
-
-// making 10s timer
-// parameter for the button to implement the timer, and the desired time duration
-// const setTimer = (theButton, chooseTime) => {
-//     let tempTime = chooseTime
-//     const timer = setInterval(() => {
-//         document.querySelector(theButton).classList.add("disabled")
-//         document.querySelector(theButton).style.opacity = .5
-//         if (tempTime > 0) {
-//             document.querySelector(theButton).innerText = tempTime
-//             tempTime -= 1
-//         } else {
-//             clearInterval(timer)
-//             document.querySelector(theButton).classList.remove("disabled")
-//             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
-//             document.querySelector(theButton).style.opacity = 1
-//         }
-//     }, 800)
-// }
-
-// feed button
+// Feed button
+// if the hungriness is less than feed amount, set to 0, otherwise decrease hungriness by set value
 const feedPet = document.getElementById("feed").addEventListener("click", (event) => {
     event.preventDefault()
     //set timer for button cd
     if (hungrinessCount < 30) {
         hungrinessCount = 0
-        setTimer("#feed", 10)
+        setTimer("#feed", 5)
     } else {
         hungrinessCount-=30
-        setTimer("#feed", 10)
+        setTimer("#feed", 5)
     }
 })
 
 
 // Train pet button
+// It will not be availble if hungriness is over a certain amount, else increase growth valuse & hungriness with train
 const trainPet = document.getElementById("train").addEventListener("click", (event) => {
     event.preventDefault()
     if (hungrinessCount < 70 && growthCount >= 90 && evolved == 1) {
@@ -148,15 +131,28 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
     } else if (hungrinessCount < 70 && growthCount >= 90) {
         console.log("Pet evolved")
         // switch to second set of pet
-        document.getElementById("thePet").src = "assets/123.gif"
+        document.getElementById("theSecondPet").style.trasition = 1
+        document.getElementById("theSecondPet").style.opacity = 1
+        // hide the first pet
+        document.getElementById("thePet").style.trasition = .01
+        document.getElementById("thePet").style.opacity = 0
         // reset growth
         evolved += 1
         growthCount = 0
-        setTimer("#train", 15)
+        setTimer("#train", 5)
     } else if (hungrinessCount < 70) {
         hungrinessCount += 20
         growthCount += 50
-        setTimer("#train", 15)
+            if (growthCount >= 80) {
+                document.getElementById("growth").style.color = "blue"
+            } else if (growthCount >= 50) {
+                document.getElementById("growth").style.color = "green"
+            } else if (growthCount >= 30) {
+                document.getElementById("growth").style.color = "yellow"
+            } else {
+                document.getElementById("growth").style.color = "white"
+            }
+        setTimer("#train", 5)
     } else {
         console.log("You can not train your pet when its hungriness is above 70")
     }
@@ -169,7 +165,7 @@ const letSleep = document.getElementById("sleep").addEventListener("click", (eve
 })
 
 
-
+// make all button disabled
 const disableButtons = () => {
     document.querySelector("form").style.opacity = .2
     document.querySelector("#feed").classList.add("disabled")
@@ -177,6 +173,7 @@ const disableButtons = () => {
     document.querySelector("#sleep").classList.add("disabled")
 }
 
+// opposite of disableButtons function
 const resetButtons = () => {
     document.querySelector("form").style.opacity = 1
     document.querySelector("#feed").classList.remove("disabled")

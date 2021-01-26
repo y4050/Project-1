@@ -14,7 +14,7 @@ body {
 
 
 .status {
-    background-color: rgb(72, 72, 123);
+    background-color: rgb(123, 123, 165);
     color: rgb(206, 206, 206);
     opacity: 1;
     display: flex;
@@ -96,4 +96,19 @@ img:hover {
 
 .disabled {
     pointer-events: none;
+}
+
+#thePet {
+    opacity: 1;
+    /* transition: .01s; */
+}
+
+#theSecondPet {
+    opacity: 0;
+    /* transition: .01s; */
+}
+
+#theSleeping {
+    opacity: 0;
+    transition: .5s;
 }
