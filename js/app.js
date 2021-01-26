@@ -30,6 +30,7 @@ hungriness.innerText = "Hungriness: " + hungrinessCount
 let time = 0
 let evolved = 0
 let gameover = false
+let sleeping = false
 // const setTimer = () => {
 //     const timer = setInterval(() => {
 //       time++; 
@@ -41,7 +42,9 @@ let gameover = false
 
 const petHungriness = () => {
     const timer = setInterval(() => {
-        if (gameover == true) {
+        if (sleeping == true) { 
+            hungrinessCount += 0
+        } else if (gameover == true) {
             clearInterval(timer)
             disableButtons()
         } else if (hungrinessCount >= 100) {
@@ -67,35 +70,26 @@ const petHungriness = () => {
 petHungriness()
 
 
-// // making 10s timer
-// let timeTen = 10
-// // parameter for the button to implement the timer
-// const tenSec = (theButton) => {
-//     const timer = setInterval(() => {
-//         if (timeTen > 0) {
-//             timeTen--
-//             document.querySelector(theButton).classList.add("disabled")
-//             document.querySelector(theButton).style.opacity = .4
-//             document.querySelector(theButton).innerText = timeTen
-//         } else {
-//             document.querySelector(theButton).classList.remove("disabled")
-//             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
-//             document.querySelector(theButton).style.opacity = 1
-//             timeTen = 10
-//             clearInterval(timer)
-//         }
-//     }, 800)
-// }
 
-
-// making 10s timer
-// parameter for the button to implement the timer, and the desired time duration
-const setTimer = (theButton, chooseTime) => {
+const setTimer = (theButton, chooseTime, sleepornot) => {
     let tempTime = chooseTime
     const timer = setInterval(() => {
         document.querySelector(theButton).classList.add("disabled")
         document.querySelector(theButton).style.opacity = .5
-        if (tempTime > 0) {
+        if(sleepornot == "yes" && tempTime <= 0) {
+            sleeping = false
+            resetButtons()
+            clearInterval(timer)
+            document.querySelector(theButton).classList.remove("disabled")
+            document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
+            document.querySelector(theButton).style.opacity = 1
+        } else if (sleepornot == "yes" && tempTime > 0) {
+            document.querySelector(theButton).innerText = tempTime
+            tempTime -= 1
+            disableButtons()
+            document.querySelector("form").style.opacity = .5
+            sleeping = true
+        } else if (tempTime > 0) {
             document.querySelector(theButton).innerText = tempTime
             tempTime -= 1
         } else {
@@ -106,6 +100,27 @@ const setTimer = (theButton, chooseTime) => {
         }
     }, 800)
 }
+
+
+
+// making 10s timer
+// parameter for the button to implement the timer, and the desired time duration
+// const setTimer = (theButton, chooseTime) => {
+//     let tempTime = chooseTime
+//     const timer = setInterval(() => {
+//         document.querySelector(theButton).classList.add("disabled")
+//         document.querySelector(theButton).style.opacity = .5
+//         if (tempTime > 0) {
+//             document.querySelector(theButton).innerText = tempTime
+//             tempTime -= 1
+//         } else {
+//             clearInterval(timer)
+//             document.querySelector(theButton).classList.remove("disabled")
+//             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
+//             document.querySelector(theButton).style.opacity = 1
+//         }
+//     }, 800)
+// }
 
 // feed button
 const feedPet = document.getElementById("feed").addEventListener("click", (event) => {
@@ -148,11 +163,22 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
     growth.innerText = "Growth: " + growthCount
 })
 
+const letSleep = document.getElementById("sleep").addEventListener("click", (event) => {
+    event.preventDefault()
+    setTimer("#sleep", 5, "yes")
+})
+
+
 
 const disableButtons = () => {
-    document.querySelector("form").style.opacity = .1
+    document.querySelector("form").style.opacity = .2
     document.querySelector("#feed").classList.add("disabled")
     document.querySelector("#train").classList.add("disabled")
     document.querySelector("#sleep").classList.add("disabled")
-    document.querySelector("#ff").classList.add("disabled")
+}
+
+const resetButtons = () => {
+    document.querySelector("form").style.opacity = 1
+    document.querySelector("#feed").classList.remove("disabled")
+    document.querySelector("#train").classList.remove("disabled")
 }
