@@ -1,0 +1,99 @@
+* {
+    max-width: 1500px;
+}
+
+body {
+    background-image: url("..//assets/1.gif"); /* gif from https://josantniosandes.artstation.com/projects/Yad6bb */
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 700px;
+    /* display: flex;
+    flex-direction: column; */
+    overflow: hidden;
+}
+
+
+.status {
+    background-color: rgb(72, 72, 123);
+    color: rgb(206, 206, 206);
+    opacity: 1;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    border: double black;
+    text-align: left;
+    width: 30%;
+    top: 1%;
+    right: 1%;
+    min-width: 400px;
+    white-space: nowrap;
+}
+
+form {
+    background-color: rgb(72, 72, 123);
+    color: rgb(206, 206, 206);
+    opacity: .2;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    justify-content: space-evenly;
+    border: double black;
+    text-align: left;
+    width: 80%;
+    margin: 60% 0 0 0;
+    padding: 1% 5%;
+    min-width: 700px;
+}
+
+form:hover {
+opacity: .8;
+}
+
+
+button {
+    position: relative;
+    font-size: 150%;
+    color: white;
+    background-color: rgb(125, 125, 196);
+    border-radius: 10%;
+    padding: 1% 5%;
+    margin: 0 1%;
+}
+
+#ff {
+    font-size: 100%;
+    padding: 1% 2%;
+}
+
+#selection-text {
+    font-size: 150%;
+    color: white;
+}
+
+#growth {
+    padding: 0 10%;
+}
+
+#hungriness {
+    padding: 0 10%;
+}
+
+.petArea div {
+    height: 0px;
+    
+}
+
+img {
+    max-width: 20%;
+    height: auto;
+    margin-top: 45%;
+    transition-duration: 5s;
+}
+
+img:hover {
+    margin-left: 80%;
+}
+
+.disabled {
+    pointer-events: none;
+}
