@@ -100,15 +100,44 @@ img:hover {
 
 #thePet {
     opacity: 1;
-    /* transition: .01s; */
+    transition: .01s;
 }
 
 #theSecondPet {
     opacity: 0;
-    /* transition: .01s; */
+    transition: .01s;
 }
 
 #theSleeping {
     opacity: 0;
     transition: .5s;
+}
+
+.pets {
+position: relative;
+animation-name: testing;
+animation-duration: 20s;
+animation-iteration-count: infinite;
+}
+
+/* https://www.w3schools.com/css/css3_animations.asp */
+/* @keyframes testing {
+    0%   {left:0; top:0;}
+    25%  {left:45%; top:0;}
+    50%  {transform: rotateY(180deg); left:50%; top:0;}
+    75%  {left:45%; top:0;}
+    100% {left:0; top:0;}
+} */
+@keyframes testing {
+    0%   {left:50px; top:0;}
+    10%  {left:10%; top:0;}
+    20%  {transform: scaleX(-1);left:20%; top:0;}
+    30%  {transform: scaleX(-1);left:20%; top:0;}
+    40%  {transform: scaleX(-1);left:20; top:0;}
+    50%  {left:20%; top:0;}
+    60%  {left:10%; top:0;}
+    70%  {left:15%; top:0;}
+    80%  {left:10%; top:0;}
+    90%  {left:5%%; top:0;}
+    100% {left:0; top:0;}
 }

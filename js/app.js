@@ -73,16 +73,27 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
     const timer = setInterval(() => {
         document.querySelector(theButton).classList.add("disabled")
         document.querySelector(theButton).style.opacity = .5
+        // end of sleep timer
         if(sleepornot == "yes" && tempTime <= 0) {
             sleeping = false
             // hide sleeping pet 
             document.getElementById("theSleeping").style.opacity = 0
+                // show the correct pet (if evolved)
+                if (evolved == 1) {
+                    document.getElementById("theSecondPet").style.opacity = 1
+                } else {
+                    document.getElementById("thePet").style.opacity = 1
+                }
             resetButtons()
             clearInterval(timer)
             document.querySelector(theButton).classList.remove("disabled")
             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
             document.querySelector(theButton).style.opacity = 1
+        // start of sleeping
         } else if (sleepornot == "yes" && tempTime > 0) {
+            // hide the current pet
+            document.getElementById("theSecondPet").style.opacity = 0
+            document.getElementById("thePet").style.opacity = 0
             // switch to sleeping pet
             document.getElementById("theSleeping").style.opacity = 1
             document.querySelector(theButton).innerText = tempTime
@@ -90,9 +101,11 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
             disableButtons()
             document.querySelector("form").style.opacity = .5
             sleeping = true
+        // start of buttons
         } else if (tempTime > 0) {
             document.querySelector(theButton).innerText = tempTime
             tempTime -= 1
+        // end of buttons
         } else {
             clearInterval(timer)
             document.querySelector(theButton).classList.remove("disabled")
@@ -134,15 +147,15 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         document.getElementById("theSecondPet").style.trasition = 1
         document.getElementById("theSecondPet").style.opacity = 1
         // hide the first pet
-        document.getElementById("thePet").style.trasition = .01
         document.getElementById("thePet").style.opacity = 0
         // reset growth
         evolved += 1
         growthCount = 0
+        document.getElementById("growth").style.color = "white"
         setTimer("#train", 5)
     } else if (hungrinessCount < 70) {
         hungrinessCount += 20
-        growthCount += 50
+        growthCount += 10
             if (growthCount >= 80) {
                 document.getElementById("growth").style.color = "blue"
             } else if (growthCount >= 50) {
