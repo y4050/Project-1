@@ -6,10 +6,11 @@ body {
     background-image: url("..//assets/1.gif"); /* gif from https://josantniosandes.artstation.com/projects/Yad6bb */
     background-size: cover;
     background-repeat: no-repeat;
-    min-width: 700px;
+    min-width: 900px;
     /* display: flex;
     flex-direction: column; */
     overflow: hidden;
+    min-width: 600px;
 }
 
 
@@ -40,9 +41,9 @@ form {
     border: double black;
     text-align: left;
     width: 80%;
-    margin: 60% 0 0 0;
+    margin: 50% 0 0 0;
     padding: 1% 5%;
-    min-width: 700px;
+    min-width: 800px;
 }
 
 form:hover {
@@ -87,11 +88,11 @@ img {
     max-width: 20%;
     height: auto;
     margin-top: 45%;
-    transition-duration: 5s;
+    transition: 5s;
 }
 
-img:hover {
-    margin-left: 80%;
+img:active {
+    margin-top: 10%;
 }
 
 .disabled {
@@ -114,10 +115,14 @@ img:hover {
 }
 
 .pets {
+margin-top: 15%;
+max-width: 80%;
 position: relative;
 animation-name: testing;
-animation-duration: 20s;
+animation-duration: 10s;
 animation-iteration-count: infinite;
+transition: transform 0.001s;
+transform-style: preserve-3d;
 }
 
 /* https://www.w3schools.com/css/css3_animations.asp */
@@ -128,16 +133,11 @@ animation-iteration-count: infinite;
     75%  {left:45%; top:0;}
     100% {left:0; top:0;}
 } */
+
 @keyframes testing {
-    0%   {left:50px; top:0;}
-    10%  {left:10%; top:0;}
-    20%  {transform: scaleX(-1);left:20%; top:0;}
-    30%  {transform: scaleX(-1);left:20%; top:0;}
-    40%  {transform: scaleX(-1);left:20; top:0;}
-    50%  {left:20%; top:0;}
-    60%  {left:10%; top:0;}
-    70%  {left:15%; top:0;}
-    80%  {left:10%; top:0;}
-    90%  {left:5%%; top:0;}
+    0%   {left:0; top:0;}
+
+    50%  {transform: rotateY(180deg);left:8%; top:0;}
+
     100% {left:0; top:0;}
 }

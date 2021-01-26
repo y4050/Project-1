@@ -68,6 +68,7 @@ petHungriness()
 
 // setTimer takes two required and an optional parameters
 // theButton is for the button that it is using with, chooseTime for desired time duration, and sleepornot, type in "yes" for third parameter when using with sleep function
+// add method so Train turns to evolve/ascend when reaching 100
 const setTimer = (theButton, chooseTime, sleepornot) => {
     let tempTime = chooseTime
     const timer = setInterval(() => {
@@ -108,8 +109,14 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
         // end of buttons
         } else {
             clearInterval(timer)
+            if (theButton == "#train" && growthCount == 100 && evolved == 0) {
+                document.querySelector(theButton).innerText = "EVOLVE"
+            } else if(theButton == "#train" && growthCount == 100 && evolved == 1) {
+                document.querySelector(theButton).innerText = "ASCEND"
+            } else {
+                document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
+            }
             document.querySelector(theButton).classList.remove("disabled")
-            document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
             document.querySelector(theButton).style.opacity = 1
         }
     }, 800)
@@ -155,7 +162,7 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         setTimer("#train", 5)
     } else if (hungrinessCount < 70) {
         hungrinessCount += 20
-        growthCount += 10
+        growthCount += 25
             if (growthCount >= 80) {
                 document.getElementById("growth").style.color = "blue"
             } else if (growthCount >= 50) {
