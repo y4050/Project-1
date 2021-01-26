@@ -21,21 +21,48 @@
 
 let growthCount = 0
 const growth = document.querySelector("#growth")
-growth.innerText = "Growth: " + growthCount
+
 
 let hungrinessCount = 0
 const hungriness = document.querySelector("#hungriness")
-hungriness.innerText = "Hungriness: " + hungrinessCount
+
 
 // set the variables' initial value
 let time = 0
 let evolved = 0
 let gameover = false
 let sleeping = false
+const form = document.querySelector("form")
+const thePet = document.getElementById("thePet")
+const petArea = document.getElementsByClassName("petArea")[0]
+const action = document.getElementById("action")
+
+// switching img L & R
+const switchImg = () => {
+    const timer = setInterval(() => {
+        if (gameover == true) {
+            petArea.style.opacity = 0
+        } else if (thePet.src.split("/").pop() == "1l.gif") {
+            thePet.src = "assets/1r.gif"
+        } else if (thePet.src.split("/").pop() == "1r.gif") {
+            thePet.src = "assets/1l.gif"
+        } else if (thePet.src.split("/").pop() == "2l.gif") {
+            thePet.src = "assets/2r.gif"
+        } else if (thePet.src.split("/").pop() == "2r.gif") {
+            thePet.src = "assets/2l.gif"
+        } else {
+            console.log("not working")
+        }
+    }, 5000)
+}
+
+switchImg()
+
 
 // set the hungriness timer so it increase over time, and change font when reaching different values
 const petHungriness = () => {
     const timer = setInterval(() => {
+        const hungreinessFont = document.getElementById("hungriness")
         if (sleeping == true) { 
             hungrinessCount += 0
         } else if (gameover == true) {
@@ -44,21 +71,22 @@ const petHungriness = () => {
         } else if (hungrinessCount >= 100) {
             console.log("game over")
             clearInterval(timer)
+            form.classList.add("grayOut")
             disableButtons()
         } else if (hungrinessCount >= 85) {
-            document.getElementById("hungriness").style.color = "red"
+            hungreinessFont.style.color = "red"
             hungrinessCount ++
         } else if (hungrinessCount >= 70) {
-            document.getElementById("hungriness").style.color = "orange"
+            hungreinessFont.style.color = "orange"
             hungrinessCount ++
         } else if (hungrinessCount >= 50) {
-            document.getElementById("hungriness").style.color = "yellow"
+            hungreinessFont.style.color = "yellow"
             hungrinessCount ++
         } else if (hungrinessCount >= 30) {
-            document.getElementById("hungriness").style.color = "white"
+            hungreinessFont.style.color = "white"
             hungrinessCount ++
         } else {
-            document.getElementById("hungriness").style.color = "green"
+            hungreinessFont.style.color = "green"
             hungrinessCount ++
         }
         hungriness.innerText = "Hungriness: " + hungrinessCount
@@ -73,34 +101,30 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
     let tempTime = chooseTime
     const timer = setInterval(() => {
         document.querySelector(theButton).classList.add("disabled")
-        document.querySelector(theButton).style.opacity = .5
+
         // end of sleep timer
         if(sleepornot == "yes" && tempTime <= 0) {
             sleeping = false
             // hide sleeping pet 
-            document.getElementById("theSleeping").style.opacity = 0
-                // show the correct pet (if evolved)
-                if (evolved == 1) {
-                    document.getElementById("theSecondPet").style.opacity = 1
-                } else {
-                    document.getElementById("thePet").style.opacity = 1
-                }
+            thePet.style.opacity = 1
+            action.style.opacity = 0
+            form.classList.remove("grayOut")
             resetButtons()
             clearInterval(timer)
             document.querySelector(theButton).classList.remove("disabled")
             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
-            document.querySelector(theButton).style.opacity = 1
+
         // start of sleeping
         } else if (sleepornot == "yes" && tempTime > 0) {
             // hide the current pet
-            document.getElementById("theSecondPet").style.opacity = 0
-            document.getElementById("thePet").style.opacity = 0
+            thePet.style.opacity = 0
+            action.style.opacity = 1
+            form.classList.add("grayOut")
             // switch to sleeping pet
-            document.getElementById("theSleeping").style.opacity = 1
             document.querySelector(theButton).innerText = tempTime
             tempTime -= 1
             disableButtons()
-            document.querySelector("form").style.opacity = .5
+
             sleeping = true
         // start of buttons
         } else if (tempTime > 0) {
@@ -117,7 +141,6 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
                 document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
             }
             document.querySelector(theButton).classList.remove("disabled")
-            document.querySelector(theButton).style.opacity = 1
         }
     }, 800)
 }
@@ -150,11 +173,12 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         disableButtons()
     } else if (hungrinessCount < 70 && growthCount >= 90) {
         console.log("Pet evolved")
-        // switch to second set of pet
-        document.getElementById("theSecondPet").style.trasition = 1
-        document.getElementById("theSecondPet").style.opacity = 1
-        // hide the first pet
-        document.getElementById("thePet").style.opacity = 0
+        // swtich img to second
+        if (thePet.src.split("/").pop() == "1l.gif") {
+            thePet.src = "assets/2l.gif"
+        } else {
+            thePet.src = "assets/2r.gif"
+        }
         // reset growth
         evolved += 1
         growthCount = 0
@@ -187,15 +211,20 @@ const letSleep = document.getElementById("sleep").addEventListener("click", (eve
 
 // make all button disabled
 const disableButtons = () => {
-    document.querySelector("form").style.opacity = .2
     document.querySelector("#feed").classList.add("disabled")
     document.querySelector("#train").classList.add("disabled")
     document.querySelector("#sleep").classList.add("disabled")
+    document.querySelector("#feed").classList.add("grayOut")
+    document.querySelector("#train").classList.add("grayOut")
+    document.querySelector("#sleep").classList.add("grayOut")
 }
 
 // opposite of disableButtons function
 const resetButtons = () => {
-    document.querySelector("form").style.opacity = 1
     document.querySelector("#feed").classList.remove("disabled")
     document.querySelector("#train").classList.remove("disabled")
+    document.querySelector("#sleep").classList.remove("disabled")
+    document.querySelector("#feed").classList.remove("grayOut")
+    document.querySelector("#train").classList.remove("grayOut")
+    document.querySelector("#sleep").classList.remove("grayOut")
 }

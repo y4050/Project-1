@@ -13,7 +13,6 @@ body {
     min-width: 600px;
 }
 
-
 .status {
     background-color: rgb(123, 123, 165);
     color: rgb(206, 206, 206);
@@ -91,10 +90,6 @@ img {
     transition: 5s;
 }
 
-img:active {
-    margin-top: 10%;
-}
-
 .disabled {
     pointer-events: none;
 }
@@ -104,17 +99,12 @@ img:active {
     transition: .01s;
 }
 
-#theSecondPet {
-    opacity: 0;
-    transition: .01s;
-}
-
-#theSleeping {
+#action {
     opacity: 0;
     transition: .5s;
 }
 
-.pets {
+/* .pets {
 margin-top: 15%;
 max-width: 80%;
 position: relative;
@@ -123,21 +113,36 @@ animation-duration: 10s;
 animation-iteration-count: infinite;
 transition: transform 0.001s;
 transform-style: preserve-3d;
-}
-
-/* https://www.w3schools.com/css/css3_animations.asp */
-/* @keyframes testing {
-    0%   {left:0; top:0;}
-    25%  {left:45%; top:0;}
-    50%  {transform: rotateY(180deg); left:50%; top:0;}
-    75%  {left:45%; top:0;}
-    100% {left:0; top:0;}
 } */
 
-@keyframes testing {
+.pets {
+margin-top: 9%;
+margin-bottom: 7%;
+max-width: 80%;
+position: relative;
+animation: walking 10s ease-out infinite, floating 4s infinite;
+}
+
+.grayOut {
+    opacity: 0.1;
+    background-color: rgb(43, 43, 43);
+}
+
+@keyframes walking {
     0%   {left:0; top:0;}
 
-    50%  {transform: rotateY(180deg);left:8%; top:0;}
+    50% {left:80%; top:0;}
 
-    100% {left:0; top:0;}
+    100% {left:0px; top:0;}
+}
+
+@keyframes floating {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(50px);
+    }
+    100% {
+      transform: translateY(0px);
 }
