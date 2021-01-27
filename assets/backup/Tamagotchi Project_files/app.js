@@ -90,7 +90,7 @@ const petHungriness = () => {
             hungrinessCount ++
         }
         hungriness.innerText = "Hungriness: " + hungrinessCount
-    }, 500)}
+    }, 300)}
 
 petHungriness()
 
@@ -118,7 +118,6 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
         } else if (sleepornot == "yes" && tempTime > 0) {
             // hide the current pet
             thePet.style.opacity = 0
-            action.src = "assets/sleeping.gif"
             action.style.opacity = 1
             form.classList.add("grayOut")
             // switch to sleeping pet
@@ -143,7 +142,7 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
             }
             document.querySelector(theButton).classList.remove("disabled")
         }
-    }, 1000)
+    }, 800)
 }
 
 
@@ -155,11 +154,9 @@ const feedPet = document.getElementById("feed").addEventListener("click", (event
     if (hungrinessCount < 30) {
         hungrinessCount = 0
         setTimer("#feed", 5)
-        imgTimer(4, "eating")
     } else {
         hungrinessCount-=30
         setTimer("#feed", 5)
-        imgTimer(2, "eating")
     }
 })
 
@@ -176,9 +173,6 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         disableButtons()
     } else if (hungrinessCount < 70 && growthCount >= 90) {
         console.log("Pet evolved")
-// problem: switch img to fast evolve img not showing on time
-        thePet.style.opacity = 0
-        imgTimer(3, "evolving")
         // swtich img to second
         if (thePet.src.split("/").pop() == "1l.gif") {
             thePet.src = "assets/2l.gif"
@@ -203,7 +197,6 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
                 document.getElementById("growth").style.color = "white"
             }
         setTimer("#train", 5)
-        imgTimer(2, "training")
     } else {
         console.log("You can not train your pet when its hungriness is above 70")
     }
@@ -237,20 +230,3 @@ const resetButtons = () => {
     document.querySelector("#sleep").classList.remove("grayOut")
     document.getElementById("selection-text").classList.remove("grayOut")
 }
-
-const imgTimer = (time, theAction) => {
-    let tempTime = time
-    const timer = setInterval(() => {
-        if (tempTime > 0 && action.style.opacity == 1) {
-        } else if (sleeping == true) {
-        } else if (tempTime > 0) {     
-            action.src = "assets/"+theAction+".gif"
-            thePet.style.opacity = 0
-            action.style.opacity = 1
-        } else {
-            clearInterval(timer)
-            action.style.opacity = 0
-            thePet.style.opacity = 1
-        }
-        tempTime--
-}, 1000)}

@@ -1,14 +1,11 @@
 * {
-    max-width: 1000px;
-    max-height: 1000px;
+    max-width: 1500px;
 }
 
 body {
     background-image: url("..//assets/1.gif"); /* gif from https://josantniosandes.artstation.com/projects/Yad6bb */
     background-size: cover;
     background-repeat: no-repeat;
-    height: 80%;
-    width: 100%;
     min-width: 900px;
     /* display: flex;
     flex-direction: column; */
@@ -22,14 +19,14 @@ body {
     opacity: 1;
     display: flex;
     flex-direction: row;
-    position: relative;
+    position: absolute;
     border: double black;
-    text-align: right;
+    text-align: left;
     width: 30%;
-    top: 5%;
-    min-width: 40%;
+    top: 1%;
+    right: 1%;
+    min-width: 400px;
     white-space: nowrap;
-    padding: 0 2% 0 0;
 }
 
 form {
@@ -38,7 +35,7 @@ form {
     opacity: .2;
     display: flex;
     flex-direction: row;
-    position: relative;
+    position: absolute;
     justify-content: space-evenly;
     border: double black;
     text-align: left;
@@ -103,12 +100,11 @@ img {
 }
 
 #action {
-    opacity: 0;
+    opacity: 1;
     transition: .5s;
     position: relative;
-    display: block;
     left: 40%;
-    bottom: 100%;
+    bottom: 200px;
 }
 
 /* .pets {
@@ -152,5 +148,4 @@ animation: walking 10s ease-out infinite, floating 4s infinite;
     }
     100% {
       transform: translateY(0px);
-    }
-    }
+}
