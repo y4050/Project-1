@@ -174,6 +174,8 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         growthCount = 0
         gameover = true
         disableButtons()
+        thePet.style.opacity = 0
+        imgTimer(10, "ending")
     } else if (hungrinessCount < 70 && growthCount >= 90) {
         console.log("Pet evolved")
 // problem: switch img to fast evolve img not showing on time
@@ -254,3 +256,13 @@ const imgTimer = (time, theAction) => {
         }
         tempTime--
 }, 1000)}
+
+// const checkTrain = () => {
+//     if (growthCount = 100 && evolved >= 1) {
+//         document.getElementById("train").style.color = "green"
+//     } else if (growthCount = 100) {
+//         document.getElementById("train").style.color = "yellow"
+//     } else if (growthCount < 100){
+//         document.getElementById("train").style.color = rgb(125, 125, 196);
+//     }
+// }

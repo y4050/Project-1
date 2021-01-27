@@ -16,6 +16,16 @@ body {
     min-width: 600px;
 }
 
+.message {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+}
+
 .status {
     background-color: rgb(123, 123, 165);
     color: rgb(206, 206, 206);
