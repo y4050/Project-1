@@ -70,7 +70,7 @@ body {
     transition: .5s;
     align-items: center;
     width: 20%;
-    left: 20%
+    left: 25%
 }
 
 
@@ -109,6 +109,19 @@ button {
     margin: 0 1%;
 }
 
+#restart {
+    position: absolute;
+    font-size:2vw;
+    border: none;
+    background-color: blue;
+    color: lightblue;
+    top: 45%;
+    opacity: 0;
+}
+
+/* CLASSES */
+
+
 .disabled {
     pointer-events: none;
 }
@@ -118,9 +131,11 @@ button {
     background-color: rgb(43, 43, 43);
 }
 
-.hide {
+.hid {
     opacity: 0;
 }
+
+/* ANIMATION */
 
 @keyframes walking {
     0%   {left:0; top:0;}

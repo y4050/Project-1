@@ -18,6 +18,10 @@
 // set pet img
 
 // figure out a way to move the pet through the array, maybe with setInverval, and the location of the pet img is depended on the time value. *** use css animation/transition
+// document.getElementById("restart").classList.add("hide")
+// document.getElementById("restart").addEventListener("click", window.location.reload())
+
+
 
 let growthCount = 0
 const growth = document.querySelector("#growth")
@@ -75,12 +79,15 @@ const petHungriness = () => {
         } else if (hungerCount >= 100) {
             mainMessage.innerText = "GAME OVER"
             mainMessage.style.opacity = 1
-            sMessage.innerText = "Hunger"
+            sMessage.innerText = "Reached max Hunger"
+            sMessage.style.color = "red"
+            sMessage.style.opacity = 1
             thePet.style.opacity = 0
             console.log("game over")
             clearInterval(timer)
             form.classList.add("grayOut")
             disableButtons()
+            document.getElementById("restart").style.opacity = 1
         } else if (hungerCount >= 85) {
             hunger.style.color = "red"
             hungerCount ++
@@ -195,6 +202,7 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         disableButtons()
         action.src = "assets/ending.gif"
         action.style.opacity = 1
+        document.getElementById("restart").style.opacity = 1
     } else if (hungerCount < 70 && growthCount >= 90) {
 // problem: switch img to fast evolve img not showing on time
         thePet.style.opacity = 0
