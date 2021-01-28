@@ -91,17 +91,24 @@ const petHungriness = () => {
         } else if (hungerCount >= 85) {
             hunger.style.color = "red"
             hungerCount ++
+            sMessage.innerText = "Pet is starving"
+            sMessage.style.color = "red"
+            sMessage.style.opacity = 1
         } else if (hungerCount >= 70) {
             hunger.style.color = "orange"
+            sMessage.style.color = "yellow"
             hungerCount ++
         } else if (hungerCount >= 50) {
             hunger.style.color = "yellow"
+            sMessage.style.color = "yellow"
             hungerCount ++
         } else if (hungerCount >= 30) {
             hunger.style.color = "white"
+            sMessage.style.color = "yellow"
             hungerCount ++
         } else {
             hunger.style.color = "green"
+            sMessage.style.color = "yellow"
             hungerCount ++
         }
         hunger.innerText = "Hunger: " + hungerCount
@@ -179,11 +186,11 @@ const feedPet = document.getElementById("feed").addEventListener("click", (event
     if (hungerCount < 30) {
         hungerCount = 0
         setTimer("#feed", 5)
-        imgTimer(4, "eating")
+        imgTimer(3, "eating")
     } else {
         hungerCount-=30
         setTimer("#feed", 5)
-        imgTimer(2, "eating")
+        imgTimer(3, "eating")
     }
 })
 
@@ -206,7 +213,7 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
     } else if (hungerCount < 70 && growthCount >= 90) {
 // problem: switch img to fast evolve img not showing on time
         thePet.style.opacity = 0
-        imgTimer(3, "evolving")
+        imgTimer(2, "evolving")
         // swtich img to second
         if (thePet.src.split("/").pop() == "1l.gif") {
             thePet.src = "assets/2l.gif"
@@ -231,9 +238,9 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
                 document.getElementById("growth").style.color = "white"
             }
         setTimer("#train", 5)
-        imgTimer(2, "training")
+        imgTimer(3, "training")
     } else {
-        console.log("You can not train your pet when its hungriness is above 70")
+        alert("You can not train your pet when its hungriness is above 70")
     }
     growth.innerText = "Growth: " + growthCount
 })
