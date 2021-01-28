@@ -42,7 +42,8 @@ const form = document.querySelector("form")
 const thePet = document.getElementById("thePet")
 // const petArea = document.getElementsByClassName("petArea")[0]
 const action = document.getElementById("action")
-
+const growthBar = document.getElementById("growthBar")
+const hungerBar = document.getElementById("hungerBar")
 // switching img L & R
 const switchImg = () => {
     const timer = setInterval(() => {
@@ -83,30 +84,35 @@ const petHungriness = () => {
             disableButtons()
         } else if (hungerCount >= 85) {
             hunger.style.color = "red"
+            hungerBar.style.backgroundColor = "red"
             hungerCount ++
             sMessage.innerText = "Pet is starving"
             sMessage.style.color = "red"
             sMessage.style.opacity = 1
         } else if (hungerCount >= 70) {
             hunger.style.color = "orange"
+            hungerBar.style.backgroundColor = "orange"
             sMessage.style.color = "yellow"
             hungerCount ++
         } else if (hungerCount >= 50) {
             hunger.style.color = "yellow"
+            hungerBar.style.backgroundColor = "yellow"
             sMessage.style.color = "yellow"
             hungerCount ++
         } else if (hungerCount >= 30) {
             hunger.style.color = "white"
+            hungerBar.style.backgroundColor = "white"
             sMessage.style.color = "yellow"
             hungerCount ++
         } else {
             hunger.style.color = "green"
+            hungerBar.style.backgroundColor = "green"
             sMessage.style.color = "yellow"
             hungerCount ++
         }
         hunger.innerText = "Hunger: " + hungerCount
+        hungerBar.style.width = hungerCount+"%"
     }, 500)}
-
 
 
 // setTimer takes two required and an optional parameters
@@ -128,7 +134,7 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
             clearInterval(timer)
             document.querySelector(theButton).classList.remove("disabled")
             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
-
+            document.getElementById("paused").style.opacity = 0
         // start of sleeping
         } else if (sleepornot == "yes" && tempTime > 0) {
             // hide the current pet
@@ -141,7 +147,7 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
             document.querySelector(theButton).innerText = tempTime
             tempTime -= 1
             disableButtons()
-
+            document.getElementById("paused").style.opacity = 1
             sleeping = true
         // start of buttons
         } else if (tempTime > 0) {
@@ -192,7 +198,7 @@ const feedPet = document.getElementById("feed").addEventListener("click", (event
 // It will not be availble if hungriness is over a certain amount, else increase growth valuse & hungriness with train
 const trainPet = document.getElementById("train").addEventListener("click", (event) => {
     event.preventDefault()
-    if (hungerCount < 70 && growthCount >= 90 && evolved == 1) {
+    if (hungerCount < 70 && growthCount >= 100 && evolved == 1) {
         console.log("You won!")
         mainMessage.innerText = "You Won!"
         mainMessage.style.opacity = 1
@@ -204,7 +210,7 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         action.src = "assets/ending.gif"
         action.style.opacity = 1
         document.getElementById("restart").style.opacity = 1
-    } else if (hungerCount < 70 && growthCount >= 90) {
+    } else if (hungerCount < 70 && growthCount >= 100) {
 // problem: switch img to fast evolve img not showing on time
         thePet.style.opacity = 0
         imgTimer(2, "evolving")
@@ -222,23 +228,30 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
     } else if (hungerCount < 70) {
         hungerCount += 20
         growthCount += 25
-            if (growthCount >= 80) {
+            if (growthCount >= 100) {
                 document.getElementById("growth").style.color = "blue"
+                growthBar.style.backgroundColor = "blue"
+                document.getElementById("maxed").style.opacity = 1
             } else if (growthCount >= 50) {
                 document.getElementById("growth").style.color = "green"
+                growthBar.style.backgroundColor = "green"
             } else if (growthCount >= 30) {
                 document.getElementById("growth").style.color = "yellow"
+                growthBar.style.backgroundColor = "yellow"
             } else {
                 document.getElementById("growth").style.color = "white"
+                growthBar.style.backgroundColor = "white"
+                document.getElementById("maxed").style.opacity = 0
             }
         setTimer("#train", 5)
         imgTimer(3, "training")
     } else {
         if (gameover !== true) {
-        alert("You can not train your pet when its hungriness is above 70")
+        alert("Cannot Train when hunger is above 70")
         }
     }
     growth.innerText = "Growth: " + growthCount
+    growthBar.style.width = growthCount + "%"
 })
 
 const letSleep = document.getElementById("sleep").addEventListener("click", (event) => {
@@ -308,8 +321,10 @@ modal.style.display = "block"
 switchImg();
 // When the user clicks on confirm, close modal and start game
 thePet.style.opacity = 0
-confirm.onclick = function() {
+form.style.display = "none"
+confirm.addEventListener("click", function() {
   modal.style.display = "none";
   thePet.style.opacity = 1
+  form.style.display = "flex"
   petHungriness();
-}
+})

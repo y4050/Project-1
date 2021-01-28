@@ -14,11 +14,12 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-        <p><em>Game Explanation</em> <br />
-            something <br />
-            something <br />
-            something <br />
-            something
+        <h2 class="gameTitle">Tamagotchi</h2>
+        <p>
+            - Game over when hunger meter reaches 100<br />
+            - Win the game by reaching 100 growth twice <br />
+            - Feed decrease hunger by 30 <br />
+            - Train increase growth by 25 and hunger by 20
         </p>
       <span class="close">START</span>
     </div>
@@ -26,7 +27,9 @@
   </div>
     <section class="status">
         <h2 id="growth">Growth: 0</h2>
+        <div id="growthBar"><span id="maxed">MAXED</span></div>
         <h2 id="hunger">Hungriness: 0</h2>
+        <div id="hungerBar"><span id="paused">PAUSED</span></div>
     </section>
     <div class="message">
         <h1 id="mainMessage">message</h1>
