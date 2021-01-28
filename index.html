@@ -9,14 +9,29 @@
     <source>
 </head>
 <body>
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <p><em>Game Explanation</em> <br />
+            something <br />
+            something <br />
+            something <br />
+            something
+        </p>
+      <span class="close">START</span>
+    </div>
+  
+  </div>
     <section class="status">
         <h2 id="growth">Growth: 0</h2>
         <h2 id="hunger">Hungriness: 0</h2>
     </section>
     <div class="message">
-        <h1 id="mainMessage">Something</h1>
-        <p id="someMessage">Something</p>
-        <button id="restart" onClick="window.location.reload()";>Restart</button>
+        <h1 id="mainMessage">message</h1>
+        <p id="someMessage">message</p>
+        
     </div>
     <section class="petArea">
             <img id="thePet" src="assets/1r.gif"/>
@@ -27,6 +42,7 @@
         <button id="feed">FEED</button>
         <button id="train">TRAIN</button>
         <button id="sleep">SLEEP</button>
+        <button id="restart" onClick="window.location.reload()";>RESET</button>
     </form>
 </body>
 </html>

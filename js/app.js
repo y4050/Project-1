@@ -21,8 +21,7 @@
 // document.getElementById("restart").classList.add("hide")
 // document.getElementById("restart").addEventListener("click", window.location.reload())
 
-
-
+// Set up the game variables 
 let growthCount = 0
 const growth = document.querySelector("#growth")
 
@@ -57,14 +56,9 @@ const switchImg = () => {
             thePet.src = "assets/2r.gif"
         } else if (thePet.src.split("/").pop() == "2r.gif") {
             thePet.src = "assets/2l.gif"
-        } else {
-            console.log("not working")
         }
     }, 5000)
 }
-
-switchImg()
-
 
 // set the hungriness timer so it increase over time, and change font when reaching different values
 
@@ -87,7 +81,6 @@ const petHungriness = () => {
             clearInterval(timer)
             form.classList.add("grayOut")
             disableButtons()
-            document.getElementById("restart").style.opacity = 1
         } else if (hungerCount >= 85) {
             hunger.style.color = "red"
             hungerCount ++
@@ -114,7 +107,7 @@ const petHungriness = () => {
         hunger.innerText = "Hunger: " + hungerCount
     }, 500)}
 
-petHungriness()
+
 
 // setTimer takes two required and an optional parameters
 // theButton is for the button that it is using with, chooseTime for desired time duration, and sleepornot, type in "yes" for third parameter when using with sleep function
@@ -143,6 +136,7 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
             action.src = "assets/sleeping.gif"
             action.style.opacity = 1
             form.classList.add("grayOut")
+            document.getElementById("sleep").style.opacity = 1
             // switch to sleeping pet
             document.querySelector(theButton).innerText = tempTime
             tempTime -= 1
@@ -240,7 +234,9 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         setTimer("#train", 5)
         imgTimer(3, "training")
     } else {
+        if (gameover !== true) {
         alert("You can not train your pet when its hungriness is above 70")
+        }
     }
     growth.innerText = "Growth: " + growthCount
 })
@@ -297,3 +293,23 @@ const imgTimer = (time, theAction) => {
         }
         tempTime--
 }, 1000)}
+
+
+
+
+// Get the modal
+const modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+const confirm = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+modal.style.display = "block"
+switchImg();
+// When the user clicks on confirm, close modal and start game
+thePet.style.opacity = 0
+confirm.onclick = function() {
+  modal.style.display = "none";
+  thePet.style.opacity = 1
+  petHungriness();
+}

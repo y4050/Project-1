@@ -17,6 +17,50 @@ body {
 }
 
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 20%; /* Location of the box */
+    left: 5%;
+    width: 90%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin: auto;
+    padding: 5% 0;
+    width: 80%;
+    text-align: center;
+    font-size: 2vw;
+  }
+
+  /* The Close Button */
+.close {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: rgb(131, 131, 228);
+    font-size: 4vw;
+    font-weight: bold;
+    border-radius: 50%;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: greenyellow;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 .status {
     background-color: rgb(123, 123, 165);
     color: rgb(206, 206, 206);
@@ -87,7 +131,7 @@ form {
     text-align: left;
     width: 80%;
     padding: 1% 0;
-    margin-top: 12%;
+    margin-top: 10%;
 }
 
 form:hover {
@@ -103,20 +147,40 @@ button {
     position: relative;
     font-size: 150%;
     color: white;
-    background-color: rgb(125, 125, 196);
+    background-color: rgb(99, 99, 173);
     border-radius: 10%;
     padding: 1% 5%;
     margin: 0 1%;
 }
 
+button:hover {
+    opacity: .8;
+    font-size: 180%;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+button:active {
+    opacity: .4;
+    font-size: 140%;
+}
+
 #restart {
-    position: absolute;
-    font-size:2vw;
-    border: none;
-    background-color: blue;
-    color: lightblue;
-    top: 45%;
-    opacity: 0;
+    font-size: 150%;
+    color: red;
+    background-color:  rgb(83, 83, 160);;
+    opacity: .6;
+}
+
+#restart:hover {
+    opacity: 1;
+    border: 2px solid red;
+    cursor: pointer;
+}
+
+#restart:active {
+    opacity: .4;
+    font-size: 140%;
 }
 
 /* CLASSES */
