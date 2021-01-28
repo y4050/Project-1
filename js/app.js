@@ -186,14 +186,16 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
     event.preventDefault()
     if (hungerCount < 70 && growthCount >= 90 && evolved == 1) {
         console.log("You won!")
+        mainMessage.innerText = "You Won!"
+        mainMessage.style.opacity = 1
         hungerCount = 0
         growthCount = 0
         gameover = true
-        disableButtons()
         thePet.style.opacity = 0
-        imgTimer(10, "ending")
+        disableButtons()
+        action.src = "assets/ending.gif"
+        action.style.opacity = 1
     } else if (hungerCount < 70 && growthCount >= 90) {
-        console.log("Pet evolved")
 // problem: switch img to fast evolve img not showing on time
         thePet.style.opacity = 0
         imgTimer(3, "evolving")
