@@ -27,6 +27,9 @@ let hungrinessCount = 0
 const hungriness = document.querySelector("#hungriness")
 
 
+const sMessage = document.getElementById("someMessage")
+const mainMessage = document.getElementById("mainMessage")
+
 // set the variables' initial value
 let time = 0
 let evolved = 0
@@ -240,6 +243,9 @@ const resetButtons = () => {
     document.getElementById("selection-text").classList.remove("grayOut")
 }
 
+
+
+
 const imgTimer = (time, theAction) => {
     let tempTime = time
     const timer = setInterval(() => {
@@ -249,9 +255,17 @@ const imgTimer = (time, theAction) => {
             action.src = "assets/"+theAction+".gif"
             thePet.style.opacity = 0
             action.style.opacity = 1
+            if (theAction == "eating") {
+                sMessage.innerText = "Hungerness - 20%"
+                sMessage.style.opacity = 1
+            } else if (theAction == "training") {
+                sMessage.innerText = "Growth + 25% & Hungerness + 20%"
+                sMessage.style.opacity = 1
+            }
         } else {
             clearInterval(timer)
             action.style.opacity = 0
+            sMessage.style.opacity = 0
             thePet.style.opacity = 1
         }
         tempTime--
