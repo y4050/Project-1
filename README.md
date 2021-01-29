@@ -30,3 +30,5 @@
   # Features
   * Two bars that grow according to the Growth and Hunger meters, as well as changing color depending on the value.
   * Added cooldowns for buttons so they can only be clicked once every other set duration.
+  * Most of the contents are reponsive, resize as window size changes including font size.
+  * Change styles in different circumstances, including change the color and wording for Train button to show that evolve or ascend is available.

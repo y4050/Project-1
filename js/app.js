@@ -11,17 +11,20 @@ const sMessage = document.getElementById("someMessage")
 const mainMessage = document.getElementById("mainMessage")
 
 // set the variables' initial value
+
 let time = 0
 let evolved = 0
 let gameover = false
 let sleeping = false
+const modal = document.getElementById("modal")
+const confirm = document.getElementById("start")
 const form = document.querySelector("form")
 const thePet = document.getElementById("thePet")
-// const petArea = document.getElementsByClassName("petArea")[0]
 const action = document.getElementById("action")
 const growthBar = document.getElementById("growthBar")
 const hungerBar = document.getElementById("hungerBar")
 const trainButton = document.getElementById("train")
+
 // switching img L & R
 const switchImg = () => {
     const timer = setInterval(() => {
@@ -287,18 +290,10 @@ const imgTimer = (time, theAction) => {
         tempTime--
 }, 1000)}
 
-// Get the modal
-const modal = document.getElementById("modal")
-
-// Get the <span> element that closes the modal
-const confirm = document.getElementById("start")
-
-
-modal.style.display = "block"
 switchImg();
-
-thePet.style.opacity = 0
+modal.style.display = "block"
 form.style.display = "none"
+thePet.style.opacity = 0
 
 confirm.addEventListener("click", function() {
   modal.style.display = "none";
