@@ -1,21 +1,14 @@
 // Set up the game variables 
 let growthCount = 0
-const growth = document.querySelector("#growth")
-
-
 let hungerCount = 0
-const hunger = document.getElementById("hunger")
-
-
-const sMessage = document.getElementById("someMessage")
-const mainMessage = document.getElementById("mainMessage")
-
-// set the variables' initial value
-
 let time = 0
 let evolved = 0
 let gameover = false
 let sleeping = false
+const growth = document.querySelector("#growth")
+const hunger = document.getElementById("hunger")
+const sMessage = document.getElementById("someMessage")
+const mainMessage = document.getElementById("mainMessage")
 const modal = document.getElementById("modal")
 const confirm = document.getElementById("start")
 const form = document.querySelector("form")
@@ -24,6 +17,17 @@ const action = document.getElementById("action")
 const growthBar = document.getElementById("growthBar")
 const hungerBar = document.getElementById("hungerBar")
 const trainButton = document.getElementById("train")
+
+// Making action img random
+const randImg = (numbOfImg) => {
+    let randNumber = Math.floor((Math.random()* numbOfImg) + 1)
+    return randNumber
+    // if (whichToChange == "train"){
+    //     thePet.src = "training" + whichImg + ".gif"
+    // } else if (whichToChange == "feed") {
+    //     thePet.src = "eating" + whichImg + ".gif"
+    // }
+}
 
 // switching img L & R
 const switchImg = () => {
@@ -92,7 +96,6 @@ const petHungriness = () => {
         hunger.innerText = "Hunger: " + hungerCount+"%"
         hungerBar.style.width = hungerCount+ "%"
     }, 500)}
-
 
 // setTimer takes two required and an optional parameters
 // theButton is for the button that it is using with, chooseTime for desired time duration, and sleepornot, type in "yes" for third parameter when using with sleep function
@@ -242,7 +245,6 @@ const letSleep = document.getElementById("sleep").addEventListener("click", (eve
     setTimer("#sleep", 5, "yes")
 })
 
-
 // make all button disabled
 const disableButtons = () => {
     document.querySelector("#feed").classList.add("disabled")
@@ -271,7 +273,8 @@ const imgTimer = (time, theAction) => {
         if (tempTime > 0 && action.style.opacity == 1) {
         } else if (sleeping == true) {
         } else if (tempTime > 0) {     
-            action.src = "assets/"+theAction+".gif"
+            action.src = "assets/" + theAction + randImg(3) + ".gif"
+            console.log(action.src)
             thePet.style.opacity = 0
             action.style.opacity = 1
             if (theAction == "eating") {
@@ -290,10 +293,11 @@ const imgTimer = (time, theAction) => {
         tempTime--
 }, 1000)}
 
-switchImg();
+// Starting
 modal.style.display = "block"
 form.style.display = "none"
 thePet.style.opacity = 0
+switchImg();
 
 confirm.addEventListener("click", function() {
   modal.style.display = "none";

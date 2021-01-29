@@ -10,7 +10,6 @@ body {
     min-width: 600px;
 }
 
-/* The Modal from w3s */
 #modal {
     display: none;
     position: absolute;
