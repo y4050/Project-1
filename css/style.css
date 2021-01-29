@@ -1,32 +1,24 @@
 * {
     font-family: 'Londrina Solid', cursive;
-    /* margin-bottom: 0;
-    max-width: 1500px;
-    min-height: auto; */
 }
 
 body {
-    background-image: url("..//assets/1.gif"); /* gif from https://josantniosandes.artstation.com/projects/Yad6bb */
+    background-image: url("..//assets/1.gif");
     background-size: cover;
     background-repeat: no-repeat;
-
-
-    /* display: flex;
-    flex-direction: column; */
     overflow: hidden;
     min-width: 600px;
 }
 
-/* The Modal (background) */
+/* The Modal from w3s */
 #modal {
-    display: none; /* Hidden by default */
-    position: absolute; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    position: absolute;
+    z-index: 1;
     left: 30%;
     width: 50%;
   }
   
-  /* Modal Content */
   #modal-content {
     display: flex;
     flex-direction: column;
@@ -44,13 +36,10 @@ body {
     font-family: 'Lobster', cursive;
 }
 
-
-  /* The Close Button */
 #start {
     display: flex;
     flex-direction: row;
     color: white;
-    /* background-color: rgb(131, 131, 228); */
     font-size: 4vw;
     font-weight: bold;
     margin-left: 40%;
@@ -209,8 +198,8 @@ button:active {
     font-size: 140%;
 }
 
-/* CLASSES */
 
+/* CLASSES */
 
 .disabled {
     pointer-events: none;
@@ -226,6 +215,7 @@ button:active {
 }
 
 /* ANIMATION */
+
 @keyframes walking {
     0%   {left:0; top:0;}
 
@@ -255,15 +245,5 @@ button:active {
     }
     100% {
       transform: translateY(0px);
-    }
-    }
-
-@keyframes flyText {
-    0% {
-        transform: translateY(0px);
-    }
-
-    100% {
-        transform: translateY(-50px);
     }
     }
