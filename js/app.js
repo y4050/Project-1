@@ -1,26 +1,3 @@
-// Create the structure for the HTML
-
-// Create container for the status
-
-// create container for pet display
-
-// create container, form, for user to click on buttons for Feed and Train buttons
-
-// set the initial value for Growth and Hungriness status
-
-// write the methods for buttons
-// when Feed button is clicked: Hungriness should go down by 50%, max should be 100%. It should increase over time. When it reaches 100%, pet dies and log gameover. When Hungriness is higher than 80%, turn the Hungriness to diplay red font. Feed should have a cooldown so it can only be pressed after set duration.
-
-// when Train button is clicked: Growth goes up by 10% and Hungriness increase by 50%, when it reaches 100% it evolves, the Growth should be reset to 0 and Hungriness back to default.
-
-// set background img
-
-// set pet img
-
-// figure out a way to move the pet through the array, maybe with setInverval, and the location of the pet img is depended on the time value. *** use css animation/transition
-// document.getElementById("restart").classList.add("hide")
-// document.getElementById("restart").addEventListener("click", window.location.reload())
-
 // Set up the game variables 
 let growthCount = 0
 const growth = document.querySelector("#growth")
@@ -62,8 +39,6 @@ const switchImg = () => {
 }
 
 // set the hungriness timer so it increase over time, and change font when reaching different values
-
-
 const petHungriness = () => {
     const timer = setInterval(() => {
         if (sleeping == true) { 
@@ -74,7 +49,7 @@ const petHungriness = () => {
         } else if (hungerCount >= 100) {
             mainMessage.innerText = "GAME OVER"
             mainMessage.style.opacity = 1
-            sMessage.innerText = "Reached max Hunger"
+            sMessage.innerText = "Reached Max Hunger"
             sMessage.style.color = "red"
             sMessage.style.opacity = 1
             thePet.style.opacity = 0
@@ -110,8 +85,8 @@ const petHungriness = () => {
             sMessage.style.color = "yellow"
             hungerCount ++
         }
-        hunger.innerText = "Hunger: " + hungerCount
-        hungerBar.style.width = hungerCount+"%"
+        hunger.innerText = "Hunger: " + hungerCount+"%"
+        hungerBar.style.width = hungerCount+ "%"
     }, 500)}
 
 
@@ -221,6 +196,7 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
             thePet.src = "assets/2r.gif"
         }
         // reset growth
+        document.getElementById("maxed").style.opacity = 0
         evolved += 1
         growthCount = 0
         document.getElementById("growth").style.color = "white"
@@ -250,7 +226,7 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         alert("Cannot Train when hunger is above 70")
         }
     }
-    growth.innerText = "Growth: " + growthCount
+    growth.innerText = "Growth: " + growthCount + "%"
     growthBar.style.width = growthCount + "%"
 })
 
@@ -307,14 +283,11 @@ const imgTimer = (time, theAction) => {
         tempTime--
 }, 1000)}
 
-
-
-
 // Get the modal
 const modal = document.getElementById("myModal");
 
 // Get the <span> element that closes the modal
-const confirm = document.getElementsByClassName("close")[0];
+const confirm = document.getElementsByClassName("start")[0];
 
 // When the user clicks the button, open the modal 
 modal.style.display = "block"
@@ -322,6 +295,7 @@ switchImg();
 // When the user clicks on confirm, close modal and start game
 thePet.style.opacity = 0
 form.style.display = "none"
+
 confirm.addEventListener("click", function() {
   modal.style.display = "none";
   thePet.style.opacity = 1
