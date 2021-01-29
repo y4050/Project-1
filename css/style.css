@@ -1,13 +1,16 @@
 * {
     font-family: 'Londrina Solid', cursive;
+    /* margin-bottom: 0;
+    max-width: 1500px;
+    min-height: auto; */
 }
 
 body {
     background-image: url("..//assets/1.gif"); /* gif from https://josantniosandes.artstation.com/projects/Yad6bb */
     background-size: cover;
     background-repeat: no-repeat;
-    height: 40%;
-    width: 100%;
+
+
     /* display: flex;
     flex-direction: column; */
     overflow: hidden;
@@ -139,7 +142,7 @@ body {
     transition: .5s;
     align-items: center;
     width: 20%;
-    left: 25%
+    left: 30%
 }
 
 form {
