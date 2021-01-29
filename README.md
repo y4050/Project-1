@@ -5,8 +5,23 @@
   ## Motivation
     Used to play this game when I was a kid, so I want to see if I could biuld one with the skills I have to make it similar to the ones I've played.
   
-  # User Stories & Wireframes
+  # Wireframe
   ![wireframe 1](./assets/project1_wireframe1.png)
+  ## Examples
+  * Start page
+  ![example 1](./assets/examples/start.png)
+
+  * Hunger Meter
+  ![example 2](./assets/examples/hungerMeter.png)
+
+  * Growth Meter
+  ![example 3](./assets/examples/TextInBar.png)
+
+  * Buttons
+  ![example 4](./assets/examples/buttons.png)
+
+  * Game Over
+  ![example 5](./assets/examples/gameOver.png)
 
   # Basic
     The webpage will display a background, with a section at the top for displaying the status of the pet.
