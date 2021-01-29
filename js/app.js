@@ -275,7 +275,7 @@ const imgTimer = (time, theAction) => {
             thePet.style.opacity = 0
             action.style.opacity = 1
             if (theAction == "eating") {
-                sMessage.innerText = "Hunger - 20%"
+                sMessage.innerText = "Hunger - 30%"
                 sMessage.style.opacity = 1
             } else if (theAction == "training") {
                 sMessage.innerText = "Growth + 25% & Hunger + 20%"
