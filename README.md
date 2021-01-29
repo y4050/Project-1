@@ -11,10 +11,10 @@
   * Start page
   ![example 1](./assets/examples/start.png)
 
-  * Hunger Meter
+  ### Hunger Meter
   ![example 2](./assets/examples/hungerMeter.png)
 
-  * Growth Meter
+  ### Growth Meter
   ![example 3](./assets/examples/TextInBar.png)
 
   * Buttons
