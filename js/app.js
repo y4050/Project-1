@@ -21,6 +21,7 @@ const thePet = document.getElementById("thePet")
 const action = document.getElementById("action")
 const growthBar = document.getElementById("growthBar")
 const hungerBar = document.getElementById("hungerBar")
+const trainButton = document.getElementById("train")
 // switching img L & R
 const switchImg = () => {
     const timer = setInterval(() => {
@@ -109,6 +110,7 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
             clearInterval(timer)
             document.querySelector(theButton).classList.remove("disabled")
             document.querySelector(theButton).innerText = theButton.substring(1).toUpperCase()
+            sMessage.style.opacity = 0
             document.getElementById("paused").style.opacity = 0
         // start of sleeping
         } else if (sleepornot == "yes" && tempTime > 0) {
@@ -123,6 +125,8 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
             tempTime -= 1
             disableButtons()
             document.getElementById("paused").style.opacity = 1
+            sMessage.style.opacity = 1
+            sMessage.innerText = "Hunger meter paused"
             sleeping = true
         // start of buttons
         } else if (tempTime > 0) {
@@ -133,15 +137,15 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
             clearInterval(timer)
             if (theButton == "#train" && growthCount == 100 && evolved == 0) {
                 // change button text and color when it reach 100
-                document.querySelector(theButton).innerText = "EVOLVE"
-                document.querySelector(theButton).style.backgroundColor = "yellow"
-                document.querySelector(theButton).style.color = "black"
-                document.querySelector(theButton).style.fontWeight = "bold"
+                trainButton.innerText = "EVOLVE"
+                trainButton.style.backgroundColor = "yellow"
+                trainButton.style.color = "black"
+                trainButton.style.fontWeight = "bold"
             } else if(theButton == "#train" && growthCount == 100 && evolved == 1) {
-                document.querySelector(theButton).innerText = "ASCEND"
-                document.querySelector(theButton).style.backgroundColor = "orange"
-                document.querySelector(theButton).style.color = "black"
-                document.querySelector(theButton).style.fontWeight = "bold"
+                trainButton.innerText = "ASCEND"
+                trainButton.style.backgroundColor = "orange"
+                trainButton.style.color = "black"
+                trainButton.style.fontWeight = "bold"
             } else {
                 document.querySelector(theButton).style.color = "white"
                 document.querySelector(theButton).style.backgroundColor = "rgb(125, 125, 196)"
@@ -284,15 +288,15 @@ const imgTimer = (time, theAction) => {
 }, 1000)}
 
 // Get the modal
-const modal = document.getElementById("myModal");
+const modal = document.getElementById("modal")
 
 // Get the <span> element that closes the modal
-const confirm = document.getElementsByClassName("start")[0];
+const confirm = document.getElementById("start")
 
-// When the user clicks the button, open the modal 
+
 modal.style.display = "block"
 switchImg();
-// When the user clicks on confirm, close modal and start game
+
 thePet.style.opacity = 0
 form.style.display = "none"
 

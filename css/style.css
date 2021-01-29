@@ -18,7 +18,7 @@ body {
 }
 
 /* The Modal (background) */
-.modal {
+#modal {
     display: none; /* Hidden by default */
     position: absolute; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -27,7 +27,7 @@ body {
   }
   
   /* Modal Content */
-  .modal-content {
+  #modal-content {
     display: flex;
     flex-direction: column;
     color: white;
@@ -39,14 +39,14 @@ body {
     line-height: 200%;
   }
 
-.gameTitle {
+#gameTitle {
     line-height: .1;
     font-family: 'Lobster', cursive;
 }
 
 
   /* The Close Button */
-.start {
+#start {
     display: flex;
     flex-direction: row;
     color: white;
@@ -57,8 +57,8 @@ body {
     padding-top: 5%;
   }
   
-  .start:hover,
-  .start:focus {
+  #start:hover,
+  #start:focus {
     color: greenyellow;
     text-decoration: none;
     cursor: pointer;
