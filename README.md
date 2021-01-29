@@ -19,7 +19,7 @@
     The pet img will change to a different set of imgs, to look like it is eating. 
 
   ## Train
-   Same concept with feed function, but will increase both the Growth and Hunger.
+    Same concept with feed function, but will increase both the Growth and Hunger.
 
   ## Hunger
     Hungriness will increase over time, using setInterval. When Hunger reaches 100%, game will be over.
@@ -27,4 +27,6 @@
   ## Growth
     Growth can be increased by using the Train function. When it reaches 100%, change to a different set of pet imgs, to indicate the pet has evovled. And reset the Train value to 0. Will probably only include one evolution, when Growth reaches its second 100%, log "You won"
 
-  
+  # Features
+  * Two bars that grow according to the Growth and Hunger meters, as well as changing color depending on the value.
+  * Added cooldowns for buttons so they can only be clicked once every other set duration.
