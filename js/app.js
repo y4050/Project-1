@@ -24,7 +24,9 @@ const checking = () => {
             } else if (growthCount > 100) {
                 growthCount = 100
             }
-    }
+        } else {
+            clearInterval(timer)
+        }
     }, 100)
 }
 // Making action img random
