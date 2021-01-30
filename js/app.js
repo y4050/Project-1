@@ -9,8 +9,6 @@ const growth = document.querySelector("#growth")
 const hunger = document.getElementById("hunger")
 const sMessage = document.getElementById("someMessage")
 const mainMessage = document.getElementById("mainMessage")
-const modal = document.getElementById("modal")
-const confirm = document.getElementById("start")
 const form = document.querySelector("form")
 const thePet = document.getElementById("thePet")
 const action = document.getElementById("action")
@@ -30,19 +28,36 @@ const randImg = (numbOfImg) => {
 }
 
 // switching img L & R
+// let compare = thePet.src.split("/").pop()
 const switchImg = () => {
     const timer = setInterval(() => {
         if (gameover == true) {
             thePet.style.opacity = 0
-        } else if (thePet.src.split("/").pop() == "1l.gif") {
+        } else if (thePet.src.split("/").pop() == "1l.gif") { // 1st pet
             thePet.src = "assets/1r.gif"
         } else if (thePet.src.split("/").pop() == "1r.gif") {
             thePet.src = "assets/1l.gif"
-        } else if (thePet.src.split("/").pop() == "2l.gif") {
+        } else if (thePet.src.split("/").pop() == "1_2l.gif") {
+            thePet.src = "assets/1_2r.gif"
+        } else if (thePet.src.split("/").pop() == "1_2r.gif") {
+            thePet.src = "assets/1_2l.gif"
+        } else if (thePet.src.split("/").pop() == "2l.gif") { // 2nd pet
             thePet.src = "assets/2r.gif"
         } else if (thePet.src.split("/").pop() == "2r.gif") {
             thePet.src = "assets/2l.gif"
-        }
+        } else if (thePet.src.split("/").pop() == "2_2l.gif") {
+            thePet.src = "assets/2_2r.gif"
+        } else if (thePet.src.split("/").pop() == "2_2r.gif") {
+            thePet.src = "assets/2_2l.gif"
+        } else if (thePet.src.split("/").pop() == "3l.gif") { // 3rd pet
+            thePet.src = "assets/3r.gif"
+        } else if (thePet.src.split("/").pop() == "3r.gif") {
+            thePet.src = "assets/3l.gif"
+        } else if (thePet.src.split("/").pop() == "3_2l.gif") {
+            thePet.src = "assets/3_2r.gif"
+        } else if (thePet.src.split("/").pop() == "3_2r.gif") {
+            thePet.src = "assets/3_2l.gif"
+        } 
     }, 5000)
 }
 
@@ -200,10 +215,18 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         thePet.style.opacity = 0
         imgTimer(2, "evolving")
         // swtich img to second
-        if (thePet.src.split("/").pop() == "1l.gif") {
-            thePet.src = "assets/2l.gif"
-        } else {
-            thePet.src = "assets/2r.gif"
+        if (thePet.src.split("/").pop() == "1l.gif") { // 1st pet
+            thePet.src = "assets/1_2l.gif"
+        } else if (thePet.src.split("/").pop() == "1r.gif") {
+            thePet.src = "assets/1_2r.gif"
+        } else if (thePet.src.split("/").pop() == "2l.gif") { // 2nd pet
+            thePet.src = "assets/2_2l.gif"
+        } else if (thePet.src.split("/").pop() == "2r.gif") {
+            thePet.src = "assets/2_2r.gif"
+        } else if (thePet.src.split("/").pop() == "3l.gif") { // 3rd pet
+            thePet.src = "assets/3_2l.gif"
+        } else if (thePet.src.split("/").pop() == "3r.gif") {
+            thePet.src = "assets/3_2r.gif"
         }
         // reset growth
         document.getElementById("maxed").style.opacity = 0
@@ -274,7 +297,6 @@ const imgTimer = (time, theAction) => {
         } else if (sleeping == true) {
         } else if (tempTime > 0) {     
             action.src = "assets/" + theAction + randImg(3) + ".gif"
-            console.log(action.src)
             thePet.style.opacity = 0
             action.style.opacity = 1
             if (theAction == "eating") {
@@ -293,15 +315,84 @@ const imgTimer = (time, theAction) => {
         tempTime--
 }, 1000)}
 
+
 // Starting
+const modal = document.getElementById("modal")
+// const confirm = document.getElementById("start")
 modal.style.display = "block"
 form.style.display = "none"
 thePet.style.opacity = 0
 switchImg();
 
-confirm.addEventListener("click", function() {
-  modal.style.display = "none";
-  thePet.style.opacity = 1
-  form.style.display = "flex"
-  petHungriness();
+// const firstPet = document.getElementById("first")
+// const secondPet = document.getElementById("second")
+// const thirdPet = document.getElementById("third")
+
+// firstPet.addEventListener("click", function() {
+//   modal.style.display = "none"
+//   thePet.style.opacity = 1
+//   form.style.display = "flex"
+//   petHungriness();
+// })
+
+// secondPet.addEventListener("click", function() {
+//     if (thePet.src.split("/").pop() == "1r.gif") {
+//         thePet.src = "assets/2r.gif"
+//     } else if (thePet.src.split("/").pop() == "1l.gif") {
+//         thePet.src = "assets/2l.gif"
+//     }
+//     modal.style.display = "none";
+//     thePet.style.opacity = 1
+//     form.style.display = "flex"
+//     petHungriness();
+// })
+
+// thirdPet.addEventListener("click", function() {
+//     if (thePet.src.split("/").pop() == "1r.gif") {
+//         thePet.src = "assets/3r.gif"
+//     } else if (thePet.src.split("/").pop() == "1l.gif") {
+//         thePet.src = "assets/3l.gif"
+//     }
+//     modal.style.display = "none";
+//     thePet.style.opacity = 1
+//     form.style.display = "flex"
+//     petHungriness();
+// })
+
+const preview = document.getElementById("preview")
+const petSelection = document.getElementById("petSelection")
+petSelection.addEventListener("mouseover", function(e) {
+    if (e.target.innerText == "#1") {
+        preview.src = "assets/1r.gif"
+        preview.style.opacity = 1
+    } else if (e.target.innerText == "#2") {
+        preview.src = "assets/2r.gif"
+        preview.style.opacity = 1
+    } else if (e.target.innerText == "#3") {
+        preview.src = "assets/3r.gif"
+        preview.style.opacity = 1
+    }
+})
+
+
+petSelection.addEventListener("click", function(e) {
+    if (e.target.innerText == "#1") {
+
+    } else if (e.target.innerText == "#2") {
+        if (thePet.src.split("/").pop() == "1r.gif") {
+            thePet.src = "assets/2r.gif"
+        } else if (thePet.src.split("/").pop() == "1l.gif") {
+            thePet.src = "assets/2l.gif"
+        }
+    } else if (e.target.innerText == "#3") {
+        if (thePet.src.split("/").pop() == "1r.gif") {
+            thePet.src = "assets/3r.gif"
+        } else if (thePet.src.split("/").pop() == "1l.gif") {
+            thePet.src = "assets/3l.gif"
+        }
+    }
+    modal.style.display = "none";
+    thePet.style.opacity = 1
+    form.style.display = "flex"
+    petHungriness();
 })

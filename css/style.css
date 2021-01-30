@@ -23,7 +23,7 @@ body {
     flex-direction: column;
     color: white;
     padding: 5% 0;
-    margin-top: 20%;
+    margin-top: 5%;
     width: 80%;
     text-align: center;
     font-size: 2vw;
@@ -33,6 +33,22 @@ body {
 #gameTitle {
     line-height: .1;
     font-family: 'Lobster', cursive;
+}
+
+#selec {
+    line-height: .1;
+    margin: 5% 0 -1% 0;
+}
+
+#hovPreview{
+    padding-bottom: 2%;
+}
+
+#preview {
+    opacity: 0;
+    width: 20%;
+    margin-top: 10%;
+    margin-left: 40%;
 }
 
 #start {
@@ -45,15 +61,15 @@ body {
     padding-top: 5%;
   }
   
-  #start:hover,
-  #start:focus {
+  #petSelection:hover,
+  #petSelection:focus {
     color: greenyellow;
     text-decoration: none;
     cursor: pointer;
   }
 
 .status {
-    background-color: rgb(123, 123, 165);
+    background-color: rgb(152, 152, 183);
     color: rgb(206, 206, 206);
     font-size: 1.5vw;
     opacity: 1;
