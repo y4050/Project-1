@@ -16,6 +16,17 @@ const growthBar = document.getElementById("growthBar")
 const hungerBar = document.getElementById("hungerBar")
 const trainButton = document.getElementById("train")
 
+const checking = () => {
+    const timer = setInterval (() => {
+        if (gameover !== true){
+            if (hungerCount < 0) {
+                hungerCount = 0
+            } else if (growthCount > 100) {
+                growthCount = 100
+            }
+    }
+    }, 100)
+}
 // Making action img random
 const randImg = (numbOfImg) => {
     let randNumber = Math.floor((Math.random()* numbOfImg) + 1)
@@ -183,17 +194,30 @@ const setTimer = (theButton, chooseTime, sleepornot) => {
 const feedPet = document.getElementById("feed").addEventListener("click", (event) => {
     event.preventDefault()
     //set timer for button cd
-    if (hungerCount < 30) {
-        hungerCount = 0
-        setTimer("#feed", 5)
-        imgTimer(3, "eating")
-    } else {
-        hungerCount-=30
-        setTimer("#feed", 5)
-        imgTimer(3, "eating")
-    }
+    randFeed = Math.floor((Math.random()*100)/2)
+    hungerCount -= randFeed
+    // if ((hungerCount -= randFeed) <= 0) {
+    //     hungerCount = 0
+    // } else {
+    //     hungerCount -= randFeed
+    // }
+    imgTimer(3, "eating")
+    setTimer("#feed", 5)
+    // if (hungerCount < 30) {
+    //     hungerCount = 0
+    //     setTimer("#feed", 5)
+    //     imgTimer(3, "eating")
+    // } else {
+    //     hungerCount-=30
+    //     setTimer("#feed", 5)
+    //     imgTimer(3, "eating")
+    // }
 })
 
+// for the random growth to add in train button and log in ImgTimer
+let randGrowth = 0
+let randFeed = 0
+let randTrainCost = 0
 // Train pet button
 // It will not be availble if hungriness is over a certain amount, else increase growth valuse & hungriness with train
 const trainPet = document.getElementById("train").addEventListener("click", (event) => {
@@ -235,8 +259,16 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         document.getElementById("growth").style.color = "white"
         setTimer("#train", 5)
     } else if (hungerCount < 70) {
-        hungerCount += 20
-        growthCount += 25
+        // added random element with JC's advice
+        randGrowth = Math.floor((Math.random()*100)/2)
+        randTrainCost = Math.floor((Math.random()*100)/2)
+        hungerCount += randTrainCost
+        growthCount += randGrowth
+        // if ((growthCount += randGrowth) > 100) {
+        //     growthCount = 100
+        // } else{
+        //     growthCount += randGrowth
+        // }
             if (growthCount >= 100) {
                 document.getElementById("growth").style.color = "blue"
                 growthBar.style.backgroundColor = "blue"
@@ -258,9 +290,11 @@ const trainPet = document.getElementById("train").addEventListener("click", (eve
         if (gameover !== true) {
         alert("Cannot Train when hunger is above 70")
         }
+        
     }
     growth.innerText = "Growth: " + growthCount + "%"
     growthBar.style.width = growthCount + "%"
+    
 })
 
 const letSleep = document.getElementById("sleep").addEventListener("click", (event) => {
@@ -300,10 +334,10 @@ const imgTimer = (time, theAction) => {
             thePet.style.opacity = 0
             action.style.opacity = 1
             if (theAction == "eating") {
-                sMessage.innerText = "Hunger - 30%"
+                sMessage.innerText = "Hunger - " + randFeed + "%"
                 sMessage.style.opacity = 1
             } else if (theAction == "training") {
-                sMessage.innerText = "Growth + 25% & Hunger + 20%"
+                sMessage.innerText = "Growth + " + randGrowth + "% & Hunger + " + randTrainCost + "%"
                 sMessage.style.opacity = 1
             }
         } else {
@@ -391,8 +425,9 @@ petSelection.addEventListener("click", function(e) {
             thePet.src = "assets/3l.gif"
         }
     }
-    modal.style.display = "none";
+    modal.style.display = "none"
     thePet.style.opacity = 1
     form.style.display = "flex"
-    petHungriness();
+    petHungriness()
+    checking()
 })
