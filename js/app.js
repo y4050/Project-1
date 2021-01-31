@@ -20,11 +20,8 @@ const growthBar = document.getElementById("growthBar")
 const hungerBar = document.getElementById("hungerBar")
 const trainButton = document.getElementById("train")
 let logLastLog = document.getElementById("last-log")
-let lastLog = document.createElement("p")
-lastLog.style.fontFamily = "'Londrina Solid', cursive;"
-lastLog.style.fontSize = "3vw"
-lastLog.style.textAlign = "center"
-lastLog.style.color = "white"
+
+const starving = document.getElementById("starving")
 
 // Making action img random
 const randImg = (numbOfImg) => {
@@ -77,12 +74,11 @@ const petHungriness = () => {
             hungerCount = 100
             mainMessage.innerText = "GAME OVER"
             mainMessage.style.opacity = 1
-            logLastLog.style.opacity = 0
-            document.body.appendChild(lastLog)
             sMessage.innerText = "Reached Max Hunger"
             sMessage.style.color = "red"
             sMessage.style.opacity = 1
             thePet.style.opacity = 0
+            starving.style.opacity = 0
             console.log("game over")
             clearInterval(timer)
             form.classList.add("grayOut")
@@ -90,29 +86,32 @@ const petHungriness = () => {
         } else if (hungerCount >= 85) {
             hunger.style.color = "red"
             hungerBar.style.backgroundColor = "red"
-            hungerCount ++
-            sMessage.innerText = "Pet is starving"
             sMessage.style.color = "red"
-            sMessage.style.opacity = 1
+            starving.style.opacity = 1
+            hungerCount ++
         } else if (hungerCount >= 70) {
             hunger.style.color = "orange"
             hungerBar.style.backgroundColor = "orange"
             sMessage.style.color = "yellow"
+            starving.style.opacity = 0
             hungerCount ++
         } else if (hungerCount >= 50) {
             hunger.style.color = "yellow"
             hungerBar.style.backgroundColor = "yellow"
             sMessage.style.color = "yellow"
+            starving.style.opacity = 0
             hungerCount ++
         } else if (hungerCount >= 30) {
             hunger.style.color = "white"
             hungerBar.style.backgroundColor = "white"
             sMessage.style.color = "yellow"
+            starving.style.opacity = 0
             hungerCount ++
         } else {
             hunger.style.color = "green"
             hungerBar.style.backgroundColor = "green"
             sMessage.style.color = "yellow"
+            starving.style.opacity = 0
             hungerCount ++
         }
         hunger.innerText = "Hunger: " + hungerCount+"%"
@@ -347,60 +346,49 @@ const imgTimer = (time, theAction) => {
                 if (randFeed > 30) {
                     sMessage.innerText = "Hunger - " + randFeed + "%" + "   Lucky!"
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 } else if (randFeed < 10) {
                     sMessage.innerText = "Hunger - " + randFeed + "%" + "   Unlucky!"
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 } else {
                     sMessage.innerText = "Hunger - " + randFeed + "%"
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 }
             } else if (theAction == "training") {
                 if (randGrowth == randTrainCost) {
                     sMessage.innerText = "Growth + " + randGrowth + "% & Hunger + " + randTrainCost + "%" + "   Fair trade"
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 } else if (randGrowth - randTrainCost > 30) {
                     sMessage.innerText = "Growth + " + randGrowth + "% & Hunger + " + randTrainCost + "%" + "   Super lucky!"
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 } else if (randGrowth - randTrainCost > 20) {
                     sMessage.innerText = "Growth + " + randGrowth + "% & Hunger + " + randTrainCost + "%" + "   Not bad!"
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 } else if (randGrowth - randTrainCost > 10) {
                     sMessage.innerText = "Growth + " + randGrowth + "% & Hunger + " + randTrainCost + "%" + "   Great!"
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 } else if (randTrainCost - randGrowth > 30) {
                     sMessage.innerText = "Growth + " + randGrowth + "% & Hunger + " + randTrainCost + "%" + "   Too unlucky!"
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 } else if (randTrainCost - randGrowth > 20) {
                     sMessage.innerText = "Growth + " + randGrowth + "% & Hunger + " + randTrainCost + "%" + "   Hmmm.."
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 } else if (randTrainCost - randGrowth > 10) {
                     sMessage.innerText = "Growth + " + randGrowth + "% & Hunger + " + randTrainCost + "%" + "   Ok..."
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 } else {
                     sMessage.innerText = "Growth + " + randGrowth + "% & Hunger + " + randTrainCost + "%" + "   Making progress"
                     sMessage.style.opacity = 1
-                    lastLog.innerText = "Last log: " + sMessage.innerText
-                    logLastLog.innerText = lastLog.innerText
+                    logLastLog.innerText = "Last log: " + sMessage.innerText
                 }
             }
         } else {

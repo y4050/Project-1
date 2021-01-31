@@ -7,11 +7,15 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
-    min-width: 600px;
+    width: 100%;
+    height: auto;
+    background-attachment: fixed;
+    position: absolute;
+    background-position: center;
 }
 
 #last-log {
-    position: absolute;
+    position: fixed;
     top: 0%;
     right: 5%;
     font-size: 2vw;
@@ -21,10 +25,10 @@ body {
 
 #modal {
     display: none;
-    position: absolute;
-    z-index: 1;
+    position: fixed;
     left: 30%;
     width: 50%;
+
 }
   
 #modal-content {
@@ -122,33 +126,56 @@ body {
 }
 
 #mainMessage {
+    position: fixed;
+    top: 25%;
     opacity: 0;
     animation: floating2 2s ease-in-out infinite;
+    font-size: 10vw;
 }
 
 #someMessage {
+    position: fixed;
+    top: 45%;
     opacity: 0;
-    font-size: 3vw;
+    font-size: 5vw;
     color: yellow;
-    animation: flyText 1s linear;
+    z-index: 3;
+    -webkit-text-stroke: 3px black;
+}
+svg {
+    border: 1px solid black;
+    background: #EB8A1C;
+  }
+
+#starving {
+    position: fixed;
+    top: 70%;
+    color: red;
+    font-size: 5vw;
+    opacity: 0;
+}
+
+.petArea {
+    position: fixed;
+    bottom: 30%;
+    width: 100%;
 }
 
 #thePet {
+    z-index: 1;
     position: relative;
-    max-width: 15%;
-    width: 10%;
+    width: 20%;
     opacity: 1;
     transition: .01s;
     animation: walking 10s ease-out infinite, floating 4s infinite;
 }
 
 #action {
-    position: relative;
+    z-index: 2;
     opacity: 0;
     transition: .5s;
-    align-items: center;
-    width: 15%;
-    left: 30%
+    width: 20%;
+    margin-left: 20%
 }
 
 form {
@@ -158,7 +185,7 @@ form {
     font-size: 1.2vw;
     display: flex;
     flex-direction: row;
-    position: absolute;
+    position: fixed;
     justify-content: space-around;
     border: double gray;
     text-align: left;
