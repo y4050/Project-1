@@ -10,15 +10,24 @@ body {
     min-width: 600px;
 }
 
+#last-log {
+    position: absolute;
+    top: 0%;
+    right: 5%;
+    font-size: 2vw;
+    color: white;
+    opacity: 0;
+}
+
 #modal {
     display: none;
     position: absolute;
     z-index: 1;
     left: 30%;
     width: 50%;
-  }
+}
   
-  #modal-content {
+#modal-content {
     display: flex;
     flex-direction: column;
     color: white;
@@ -28,7 +37,7 @@ body {
     text-align: center;
     font-size: 2vw;
     line-height: 200%;
-  }
+}
 
 #gameTitle {
     line-height: .1;
@@ -59,14 +68,7 @@ body {
     font-weight: bold;
     margin-left: 40%;
     padding-top: 5%;
-  }
-  
-  #petSelection:hover,
-  #petSelection:focus {
-    color: greenyellow;
-    text-decoration: none;
-    cursor: pointer;
-  }
+}
 
 .status {
     background-color: rgb(152, 152, 183);
@@ -165,9 +167,7 @@ form {
     bottom: 2%;
 }
 
-form:hover {
-opacity: .8;
-}
+
 
 #selection-text {
     font-size: 150%;
@@ -184,9 +184,28 @@ button {
     margin: 0 1%;
 }
 
+#restart {
+    font-size: 150%;
+    color: red;
+    background-color:  rgb(83, 83, 160);;
+    opacity: .6;
+}
+
+
+/* Event Listener? */
+
+#petSelection button:hover {
+    color: greenyellow;
+}
+
+form:hover {
+    opacity: .8;
+}
+
 button:hover {
     opacity: .8;
     font-size: 180%;
+    color: greenyellow;
     border: 2px solid white;
     cursor: pointer;
 }
@@ -194,13 +213,6 @@ button:hover {
 button:active {
     opacity: .4;
     font-size: 140%;
-}
-
-#restart {
-    font-size: 150%;
-    color: red;
-    background-color:  rgb(83, 83, 160);;
-    opacity: .6;
 }
 
 #restart:hover {
